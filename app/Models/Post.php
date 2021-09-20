@@ -28,6 +28,13 @@ class Post extends Model
         ->orWhere('body', 'like', '%' . $search . '%');
       });
 
+        $query->when($filters['author'] ?? false, function($query, $search) {
+            $query
+                ->whereHas('author', function ($query) {
+                    $query->where('username', $author);
+                });
+        });
+
     }
 
     public function author()
