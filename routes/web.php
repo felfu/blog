@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use \App\Http\Controllers\RegisterController;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\User;
@@ -16,4 +17,6 @@ Route::get('categories/{category:slug}', function(Category $category) {
     'posts' => $category->posts
   ]);
 });
+
+Route:: get('register', RegisterController::class, 'create');
 
