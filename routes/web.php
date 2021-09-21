@@ -18,5 +18,7 @@ Route::get('categories/{category:slug}', function(Category $category) {
   ]);
 });
 
-Route:: get('register', RegisterController::class, 'create');
+Route:: get('register', [RegisterController::class, 'create']);
+
+Route:: post('register', [RegisterController::class, 'store']);
 
