@@ -16,7 +16,9 @@
 
             <div class="mt-8 md:mt-0 flex">
                 @auth()
-                    <span class="text-xs font-bold uppercase">Welcome, {{auth()->user()->name }}</span>
+                    <span class="m-3 text-xs font-bold uppercase">Welcome, {{auth()->user()->name }}</span>
+                    <a class="m-3 text-xs font-bold uppercase" href="/admin/post/create">New Post</a>
+                    <a class="m-3 text-xs font-bold uppercase" href="/admin/posts">All Posts</a>
 
                     <form action="/logout" method="post">
                         @csrf
@@ -28,7 +30,7 @@
                     <a href="/login" class="text-xs font-bold uppercase">Log In</a>
                 @endguest
 
-                <a href="#" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                <a href="#newsletter" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                     Subscribe for Updates
                 </a>
             </div>
@@ -44,13 +46,15 @@
             <div class="mt-10">
                 <div class="relative inline-block mx-auto lg:bg-gray-200 rounded-full">
 
-                    <form method="POST" action="#" class="lg:flex text-sm">
+                    <form id="newsletter" method="POST" action="/newsletter" class="lg:flex text-sm">
+                        @csrf
+
                         <div class="lg:py-3 lg:px-5 flex items-center">
                             <label for="email" class="hidden lg:inline-block">
                                 <img src="/images/mailbox-icon.svg" alt="mailbox letter">
                             </label>
 
-                            <input id="email" type="text" placeholder="Your email address"
+                            <input id="email" name="email" type="text" placeholder="Your email address"
                                    class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
                         </div>
 
@@ -60,7 +64,12 @@
                             Subscribe
                         </button>
                     </form>
+
                 </div>
+
+                @error('email')
+                <span>{{ $message }}</span>
+                @enderror
             </div>
         </footer>
     </section>
