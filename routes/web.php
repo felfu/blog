@@ -42,3 +42,7 @@ Route::get('admin/posts', [AdminPostController::class, 'index'])->middleware('ad
 Route::get('admin/posts/{post}/edit', [AdminPostController::class, 'edit'])->middleware('admin');
 Route::patch('admin/posts/{post}', [AdminPostController::class, 'update'])->middleware('admin');
 Route::delete('admin/posts/{post}', [AdminPostController::class, 'destroy'])->middleware('admin');
+
+
+Route::get('admin/newsletter', [NewsletterController::class, 'index']);
+Route::delete('admin/newsletter/{memberMail}', [NewsletterController::class, 'destroy']);
